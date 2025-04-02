@@ -1,4 +1,4 @@
-# app_gluco_sense
+# Application GlucoSense
 
 ## Getting Started
 
