@@ -1,3 +1,16 @@
+buildscript {
+    repositories {
+        google()  // Required for AndroidX and other dependencies
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.1' // Ensure this is the latest version
+        // Add the Maven coordinates and latest version of the plugin
+        classpath 'com.google.gms:google-services:4.4.2'
+    }
+}
+
+
 allprojects {
     repositories {
         google()

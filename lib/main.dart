@@ -8,14 +8,16 @@ import 'package:app_gluco_sense/screens/cameraScreen.dart';
 import 'package:app_gluco_sense/screens/testScreen.dart';
 import 'package:app_gluco_sense/screens/uploadTest.dart';
 import 'package:app_gluco_sense/utils.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-void main() {
-  debugPaintSizeEnabled = false;
+void main() async{
+  //debugPaintSizeEnabled = false;
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
-
+  await Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
