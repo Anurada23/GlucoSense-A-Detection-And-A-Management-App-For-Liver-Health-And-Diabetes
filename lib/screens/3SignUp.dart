@@ -1,3 +1,5 @@
+import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,7 +8,14 @@ import '4login.dart';
 import '5mainMenu.dart';
 //import 'package:myapp/page-1/MainMenu.dart';
 
-class MyApp3 extends StatelessWidget {
+class MyApp3 extends StatefulWidget {
+  @override
+  _MyApp3State createState() => _MyApp3State();
+}
+
+
+
+class _MyApp3State extends State<MyApp3> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +28,7 @@ class MyApp3 extends StatelessWidget {
     );
   }
 }
+
 
 class Scene3 extends StatelessWidget {
   final String fullname = '';
@@ -128,9 +138,7 @@ class Scene3 extends StatelessWidget {
               ),
               SizedBox(height: 70),
               TextField(
-                onChanged: (text4) {
-                  // Handle confirm password input
-                },
+                controller: confirmpasswordController,
                 decoration: InputDecoration(
                   labelText: 'Confirm New Password',
                   labelStyle: GoogleFonts.robotoCondensed(
@@ -152,11 +160,21 @@ class Scene3 extends StatelessWidget {
               SizedBox(height: 50),
               ElevatedButton(
                 onPressed: () {
+                  if(!EmailValidator.validate(emailController.text)){
+                    print("Please enter a valid email");
+                  }else if(passwordController.text.length<6){
+                    print("Please enter a valid password");
+                  }else if(passwordController.text==confirmpasswordController.text){
+                    signUpWithEmailAndPassword(context);
+                  }
+                  else{
+                  print("password does not match");
+                  }
                   //Navigate to MyApp5
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyApp5()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => MyApp5()),
+                  // );
                 },
                 style: ButtonStyle(
 
@@ -222,4 +240,23 @@ class Scene3 extends StatelessWidget {
 
     );
   }
+  // methode for sign up
+  Future<void> signUpWithEmailAndPassword(BuildContext context) async {
+    try {
+      final UserCredential authResult =
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      // Handle successful sign-up here
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MyApp5()),
+      );
+    } catch (e) {
+      // Handle sign-up errors here
+      print(e.toString());
+    }
+  }
+
 }

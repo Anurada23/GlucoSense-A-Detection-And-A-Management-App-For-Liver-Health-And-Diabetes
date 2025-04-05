@@ -1,3 +1,5 @@
+import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,7 +7,12 @@ import 'package:google_fonts/google_fonts.dart';
 import '3SignUp.dart';
 import '5mainMenu.dart';
 
-class MyApp4 extends StatelessWidget {
+class MyApp4 extends StatefulWidget {
+  @override
+  _MyApp4State createState() => _MyApp4State();
+}
+
+class _MyApp4State extends State<MyApp4> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -107,11 +114,17 @@ class Scene4 extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
+                  if (!EmailValidator.validate(emailController.text))
+                  {print("Please enter valid email address");}
+                  else if (passwordController.text.length < 6)
+                  {print("Please enter valid password");}
+                  else
+                  {signInWithEmailAndPassword(context);}
                   //Handle login logic here MyApp5
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyApp5()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => MyApp5()),
+                  // );
                 },
                 style: ButtonStyle(
                   backgroundColor:
@@ -175,5 +188,26 @@ class Scene4 extends StatelessWidget {
       ),
     );
   }
+  // methode for log in
+  Future<void> signInWithEmailAndPassword(BuildContext context) async {
+    try {
+      final UserCredential authResult =
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      // Handle successful sign-in here
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MyApp5()),
+      );
+    } catch (e) {
+      print(e);
+      // Handle sign-in errors here
+      // create relevant error in flutter app
+      print("user not found. Please signup and try again");
+    }
+  }
+
 }
 
