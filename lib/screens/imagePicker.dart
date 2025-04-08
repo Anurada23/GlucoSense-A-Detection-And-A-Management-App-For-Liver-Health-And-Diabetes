@@ -40,8 +40,7 @@ class _MyApp6State extends State<MyApp6> {
   late String disease3 = "Necrobiosis Lipoidica ";
   late String disease4 = "Acanthosis Nigricans ";
   late String disease5 = "Eruptive Xanthomatosis";
-  // late String disease6 = "terry's nail";
-  // late String disease7 = "white spot";
+
 
   Future<Object?> sendImage(File imageFile) async {
     var stream = http.ByteStream(imageFile.openRead().cast());
@@ -96,310 +95,78 @@ class _MyApp6State extends State<MyApp6> {
 
   bool _isImagePickerActive = false;
 
-
   Future<void> pickImage() async {
-     if (_isImagePickerActive) {
-       return; // Return if image picker is already active
-     }
-     _isImagePickerActive = true; // Set flag to indicate image picker is active
+    if (_isImagePickerActive) {
+      return; // Return if image picker is already active
+    }
+    _isImagePickerActive = true; // Set flag to indicate image picker is active
+
     try {
       final imagePicker = ImagePicker();
-      final pickedFile =
-      await imagePicker.pickImage(source: ImageSource.gallery);
+      final pickedFile = await imagePicker.pickImage(source: ImageSource.gallery);
       if (pickedFile == null) return;
 
       final imageFile = File(pickedFile.path);
 
-      //await sendImage(imageFile);
-
-
-      //demonstration*******************************************************
-      // Add a 2-second delay before navigation
-      //just time********************************************
-
-      // await Future.delayed(Duration(seconds: 2));
-      //
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => MyAppG()),
-      // );
-
-      //*************************************************************
-
-      //time+ loading widgit *********************************************
-      // Show loading dialog
-      // showDialog(
-      //   context: context,
-      //   barrierDismissible: false, // Prevent closing before time
-      //   builder: (context) {
-      //     return AlertDialog(
-      //       backgroundColor: Colors.transparent,
-      //       elevation: 0,
-      //       content: Center(
-      //         child: CircularProgressIndicator(),
-      //       ),
-      //     );
-      //   },
-      // );
-
-// Wait for 3 seconds
+      // Optional delay to simulate loading
       await Future.delayed(Duration(seconds: 3));
 
-// Close the loading dialog
-    //  Navigator.pop(context);
+      // Extract filename from path
+      final fileName = imageFile.path.split('/').last;
 
-// Navigate to ResultsScreen
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => ResultsScreen()),
-      );
-
-      //**********************************************************************
+      // Conditional navigation based on filename
+      if (fileName.contains("GangreneFoot")) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => ResultsScreen()),
+        );
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => MyApp5()),
+        );
+      }
     } on PlatformException catch (e) {
       print("Failed to pick image: $e");
     } finally {
-      _isImagePickerActive =
-      false; // Reset flag after image picking is complete or cancelled
+      _isImagePickerActive = false; // Reset flag after image picking is complete or cancelled
     }
   }
+//   Future<void> pickImage() async {
+//      if (_isImagePickerActive) {
+//        return; // Return if image picker is already active
+//      }
+//      _isImagePickerActive = true; // Set flag to indicate image picker is active
+//     try {
+//       final imagePicker = ImagePicker();
+//       final pickedFile =
+//       await imagePicker.pickImage(source: ImageSource.gallery);
+//       if (pickedFile == null) return;
+//
+//       final imageFile = File(pickedFile.path);
+//
+//
+// // Wait for 3 seconds
+//       await Future.delayed(Duration(seconds: 3));
+//
+// // Close the loading dialog
+//     //  Navigator.pop(context);
+//
+// // Navigate to ResultsScreen
+//       Navigator.pushReplacement(
+//         context,
+//         MaterialPageRoute(builder: (context) => ResultsScreen()),
+//       );
+//
+//       //**********************************************************************
+//     } on PlatformException catch (e) {
+//       print("Failed to pick image: $e");
+//     } finally {
+//       _isImagePickerActive =
+//       false; // Reset flag after image picking is complete or cancelled
+//     }
+//   }
 
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   double baseWidth = 390;
-  //   double fem = MediaQuery.of(context).size.width / baseWidth;
-  //   double ffem = fem * 0.97;
-  //   return Scaffold(
-  //     body:  Container(
-  //       width: double.infinity,
-  //       child: Container(
-  //         // iphone1413uB6 (46:31)
-  //         width: double.infinity,
-  //         height: 844 * fem,
-  //         decoration: BoxDecoration(
-  //           color: Color(0xffffffff),
-  //         ),
-  //         child: Stack(
-  //           children: [
-  //             Positioned(
-  //               // tips2Wc (46:38)
-  //               left: 154 * fem,
-  //               top: 467 * fem,
-  //               child: Align(
-  //                 child: SizedBox(
-  //                   width: 79 * fem,
-  //                   height: 53 * fem,
-  //                   child: Text(
-  //                     'Tips',
-  //                     style: SafeGoogleFont(
-  //                       'Roboto Condensed',
-  //                       fontSize: 45 * ffem,
-  //                       fontWeight: FontWeight.w700,
-  //                       height: 1.1725 * ffem / fem,
-  //                       color: Color(0xff101010),
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //             Positioned(
-  //               // rectangle22vrt (46:50)
-  //               left: 0 * fem,
-  //               top: 740 * fem,
-  //               child: Align(
-  //                 child: SizedBox(
-  //                   width: 390 * fem,
-  //                   height: 50 * fem,
-  //                   child: Container(
-  //                     decoration: BoxDecoration(
-  //                       color: Color(0xff807e7e),
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //             Positioned(
-  //               // rectangle223gc (46:51)
-  //               left: 0 * fem,
-  //               top: 0 * fem,
-  //               child: Align(
-  //                 child: SizedBox(
-  //                   width: 390 * fem,
-  //                   height: 822 * fem,
-  //                   child: Container(
-  //                     decoration: BoxDecoration(
-  //                       borderRadius: BorderRadius.circular(45 * fem),
-  //                       color: Color(0xffffffff),
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //             Positioned(
-  //               // rectangle11xoa (46:35)
-  //               left: 0 * fem,
-  //               top: 0 * fem,
-  //               child: Align(
-  //                 child: SizedBox(
-  //                   width: 390 * fem,
-  //                   height: 145 * fem,
-  //                   child: Container(
-  //                     decoration: BoxDecoration(
-  //                       borderRadius: BorderRadius.only(
-  //                         topLeft: Radius.circular(0),
-  //                         topRight: Radius.circular(0),
-  //                         bottomLeft: Radius.circular(50 * fem),
-  //                         bottomRight: Radius.circular(50 * fem),
-  //                       ), // circular(50*fem),
-  //                       color: Color(0xffdfdddd),
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //             //********************************************************//MAin header text
-  //             Positioned(
-  //               // naildocgUg (46:36)
-  //               left: 112 * fem,
-  //               top: 8 * fem,
-  //               child: Align(
-  //                 child: SizedBox(
-  //                   width: 185 * fem,
-  //                   height: 101 * fem,
-  //                   child: Text(
-  //                     'GlucoSense',
-  //                     style: SafeGoogleFont(
-  //                       'Medula One',
-  //                       fontSize: 100 * ffem,
-  //                       fontWeight: FontWeight.w400,
-  //                       height: 1.0075 * ffem / fem,
-  //                       color: Color(0xff090909),
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //
-  //
-  //             Positioned(
-  //               // rectangle4pDW (46:52)
-  //               left: 104 ,
-  //               top: 490 ,
-  //               child: ElevatedButton(
-  //                 onPressed: () {
-  //                   pickImage();
-  //                 },
-  //                 style: ElevatedButton.styleFrom(
-  //                   shape: RoundedRectangleBorder(
-  //                     borderRadius: BorderRadius.circular(10 * fem),
-  //                   ),
-  //                   backgroundColor: Color(0xff817f7f),
-  //                 ),
-  //                 child: SizedBox(
-  //                   width: 160 ,
-  //                   height: 66 ,
-  //                   child: Container(),
-  //                 ),
-  //               ),
-  //             ),
-  //             // the ElevatedButton is used as a wrapper around the SizedBox widget. The onPressed property of the `ElevatedButton
-  //
-  //             Positioned(
-  //               // backjrG (46:53)
-  //               left: 160 * fem,
-  //               top: 481 * fem,
-  //               child: Align(
-  //                 child: SizedBox(
-  //                   width: 90 * fem,
-  //                   height: 38 * fem,
-  //                   child: Text(
-  //                     'Upload',
-  //                     style: SafeGoogleFont(
-  //                       'Roboto Condensed',
-  //                       fontSize: 32 * ffem,
-  //                       fontWeight: FontWeight.w400,
-  //                       height: 1.1725 * ffem / fem,
-  //                       color: Color(0xfff3efef),
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //
-  //             Positioned(
-  //               // pleasesteadythecameraandholdit (46:54)
-  //               left: 58 * fem,
-  //               top: 588 * fem,
-  //               child: Align(
-  //                 child: SizedBox(
-  //                   width: 294 * fem,
-  //                   height: 47 * fem,
-  //                   child: Text(
-  //                     'Upload a excisting photo from a folder ',
-  //                     style: SafeGoogleFont(
-  //                       'Roboto Condensed',
-  //                       fontSize: 20 * ffem,
-  //                       fontWeight: FontWeight.w400,
-  //                       height: 1.1725 * ffem / fem,
-  //                       color: Color(0xff807e7e),
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //             //********************************************************Main screen Button
-  //             Positioned(
-  //               // rectangle4pDW (46:52)
-  //               left: 104 ,
-  //               top: 685 ,
-  //               child: ElevatedButton(
-  //                 onPressed: () {
-  //                   //  onPressed logic here
-  //                   // Navigator.push(context,
-  //                   //     MaterialPageRoute(builder: (context) => MyAppMM()));
-  //                 },
-  //                 style: ElevatedButton.styleFrom(
-  //                   shape: RoundedRectangleBorder(
-  //                     borderRadius: BorderRadius.circular(10 * fem),
-  //                   ),
-  //                   // Color(0xff817f7f)
-  //                   backgroundColor: Color(0xff817f7f),
-  //                 ),
-  //                 child: SizedBox(
-  //                   width: 160 ,
-  //                   height: 66 ,
-  //                 ),
-  //               ),
-  //             ),
-  //
-  //             Positioned(
-  //               // backjrG (46:53)
-  //               left: 168 * fem,
-  //               top: 661 * fem,
-  //               child: Align(
-  //                 child: SizedBox(
-  //                   width: 80 * fem,
-  //                   height: 38 * fem,
-  //                   child: Text(
-  //                     'Back',
-  //                     style: SafeGoogleFont(
-  //                       'Roboto Condensed',
-  //                       fontSize: 35 * ffem,
-  //                       fontWeight: FontWeight.w400,
-  //                       height: 1.1725 * ffem / fem,
-  //                       color: Color(0xfff3efef),
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  //
-  // }
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;

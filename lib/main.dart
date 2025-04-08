@@ -5,6 +5,8 @@ import 'package:app_gluco_sense/screens/4login.dart';
 import 'package:app_gluco_sense/screens/5mainMenu.dart';
 import 'package:app_gluco_sense/screens/Gangrene.dart';
 import 'package:app_gluco_sense/screens/cameraScreen.dart';
+import 'package:app_gluco_sense/screens/imagePicker.dart';
+import 'package:app_gluco_sense/screens/sGPTScreen.dart';
 import 'package:app_gluco_sense/screens/testScreen.dart';
 import 'package:app_gluco_sense/screens/uploadTest.dart';
 import 'package:app_gluco_sense/utils.dart';
@@ -34,8 +36,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //home: Scene1(), Scene5 SceneUploadTest
-      //SceneBEL ResultsScreen SceneMM Iphone1431
-      home: Scene1(),
+      //SceneBEL ResultsScreen SceneMM Iphone1431 MyApp6 MyAppSGPT ResultsScreen
+      home: MyAppSGPT(),
 
     );
   }
