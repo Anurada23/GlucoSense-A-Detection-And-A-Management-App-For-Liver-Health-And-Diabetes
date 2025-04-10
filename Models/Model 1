@@ -1,0 +1,257 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.callbacks import EarlyStopping
+from sklearn.metrics import confusion_matrix
+import tensorflow_hub as hub
+import os
+import random
+import shutil
+from math import ceil, sqrt
+
+from google.colab import drive
+drive.mount('/content/drive')
+
+# Define the directory paths
+train_dir = '/content/drive/MyDrive/FYP/Datasets/train'
+val_dir = '/content/drive/MyDrive/FYP/Datasets/valid'
+test_dir = '/content/drive/MyDrive/FYP/Datasets/test'
+
+# Function to identify classes in a directory
+def get_classes(directory):
+    return [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
+
+# Get the classes
+classes = get_classes(train_dir)
+
+print(f"Detected classes: {classes}")
+
+
+
+# Create train set
+training_images= []
+for cls in classes:
+    cls_dir = os.path.join(train_dir, cls)
+    training_images.extend([os.path.join(cls_dir, img) for img in os.listdir(cls_dir)])
+
+
+# Create validation set
+validation_images = []
+for cls in classes:
+    cls_dir = os.path.join(val_dir, cls)
+    validation_images.extend([os.path.join(cls_dir, img) for img in os.listdir(cls_dir)])
+
+
+
+# Create test set
+test_images = []
+for cls in classes:
+    cls_dir = os.path.join(test_dir, cls)
+    test_images.extend([os.path.join(cls_dir, img) for img in os.listdir(cls_dir)])
+
+
+
+# Print statistics
+#print(f"Total images: {len(all_images)}")
+print(f"Training images: {len(training_images)}")
+print(f"Validation images: {len(validation_images)}")
+print(f"Test images: {len(test_images)}")
+
+
+
+# Ensure no overlap between datasets
+training_set = set(training_images)
+validation_set = set(validation_images)
+test_set = set(test_images)
+
+# Check for overlaps
+assert len(training_set & validation_set) == 0, "Overlap between training and validation sets!"
+assert len(training_set & test_set) == 0, "Overlap between training and test sets!"
+assert len(validation_set & test_set) == 0, "Overlap between validation and test sets!"
+
+# Check for overlaps and print messages
+if len(training_set & validation_set) > 0:
+    print("Overlap found between training and validation sets!")
+else:
+    print("No overlap between training and validation sets.")
+
+if len(training_set & test_set) > 0:
+    print("Overlap found between training and test sets!")
+else:
+    print("No overlap between training and test sets.")
+
+if len(validation_set & test_set) > 0:
+    print("Overlap found between validation and test sets!")
+else:
+    print("No overlap between validation and test sets.")
+
+
+
+# Define the image file paths
+images = training_images
+
+# Define the corresponding categories for each image
+categories = [img.split(os.sep)[-2] for img in images]
+
+plt.figure(figsize=(18, 12))
+for i in range(min(36, len(images))):
+    img = plt.imread(images[i])
+    plt.subplot(6, 6, i + 1)
+    plt.imshow(img)
+    plt.title(categories[i])  # Display the category in the title
+    plt.axis("off")
+plt.tight_layout()
+plt.show()
+
+# Create data generators
+batch_size = 47
+image_size = (224, 224)
+
+train_datagen = ImageDataGenerator(
+    rescale=1./255,
+    rotation_range=30,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True,
+
+)
+
+test_datagen = ImageDataGenerator(rescale=1./255)
+
+train_generator = train_datagen.flow_from_directory(
+    train_dir,
+    target_size=image_size,
+    batch_size=batch_size,
+    class_mode='categorical',
+    classes=classes,
+
+)
+
+validation_generator = train_datagen.flow_from_directory(
+    val_dir,
+    target_size=image_size,
+    batch_size=batch_size,
+    class_mode='categorical',
+    classes=classes,
+
+)
+
+test_generator = test_datagen.flow_from_directory(
+    test_dir,
+    target_size=image_size,
+    batch_size=1,
+    class_mode='categorical',
+    classes=classes
+)
+
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.applications import EfficientNetB0
+from tensorflow.keras import layers, models
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+from keras import regularizers
+from keras.callbacks import ReduceLROnPlateau
+
+# Define the number of classes
+num_classes = len(classes)
+
+# Build the EfficientNetB0 model
+base_model = EfficientNetB0(include_top=False, input_shape=(224, 224, 3), weights='imagenet')
+base_model.trainable = False  # Freeze the base model
+
+# Unfreeze the last 20 layers of the base model
+#for layer in base_model.layers[-20:]:  # Unfreeze the last 20 layers
+ #   layer.trainable = True
+
+# Create a new model on top
+model = models.Sequential([
+    base_model,
+    layers.GlobalAveragePooling2D(),
+    layers.Dense(256, activation='relu', kernel_regularizer=regularizers.l2(0.01)),
+    layers.BatchNormalization(),      # Batch Normalization Layer
+    layers.Dropout(0.4),              # Dropout layer for regularization
+    layers.Dense(num_classes, activation='softmax')  # Final layer for classification
+])
+
+# Compile the model
+model.compile(optimizer=Adam(learning_rate=1e-4),
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+
+# Define callbacks
+early_stopping = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
+checkpoint = ModelCheckpoint('best_model.keras', monitor='val_loss', save_best_only=True)
+# Define the ReduceLROnPlateau callback
+reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=3, min_lr=1e-5)
+
+
+from sklearn.metrics import classification_report, confusion_matrix
+import seaborn as sns
+
+# Train the model
+history = model.fit(
+    train_generator,
+    validation_data=validation_generator,
+    epochs=11,  # Set the number of epochs as needed
+    batch_size=47,
+    callbacks=[early_stopping, checkpoint,reduce_lr]
+)
+
+# Evaluate the model on the test set
+test_loss, test_accuracy = model.evaluate(test_generator)
+print(f'Test Loss: {test_loss:.4f}')
+print(f'Test Accuracy: {test_accuracy:.4f}')
+
+# Make predictions on the test set
+Y_pred = model.predict(test_generator)
+y_pred = np.argmax(Y_pred, axis=1)  # Convert predictions to class labels
+y_true = test_generator.classes  # Get the true labels
+
+# Generate a classification report
+target_names = test_generator.class_indices.keys()  # Get the class names
+print(classification_report(y_true, y_pred, target_names=target_names))
+
+# Compute confusion matrix
+conf_matrix = confusion_matrix(y_true, y_pred)
+
+# Plot confusion matrix
+plt.figure(figsize=(8, 6))
+sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues',
+            xticklabels=target_names, yticklabels=target_names)
+plt.title('Confusion Matrix')
+plt.ylabel('True label')
+plt.xlabel('Predicted label')
+plt.show()
+
+# Plot training & validation accuracy and loss
+plt.figure(figsize=(14, 5))
+
+# Plot training & validation accuracy
+plt.subplot(1, 2, 1)
+plt.plot(history.history['accuracy'], label='Train Accuracy')
+plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
+plt.title('Model Accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(loc='upper left')
+
+# Plot training & validation loss
+plt.subplot(1, 2, 2)
+plt.plot(history.history['loss'], label='Train Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.title('Model Loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(loc='upper left')
+
+plt.show()
