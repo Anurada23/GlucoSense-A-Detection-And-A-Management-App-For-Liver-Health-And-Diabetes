@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class AFLDRecommendationScreenLow extends StatelessWidget {
-  const AFLDRecommendationScreenLow({Key? key}) : super(key: key);
+class CholestaticRecommendationScreenHealthy extends StatelessWidget {
+  const CholestaticRecommendationScreenHealthy({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,19 +64,19 @@ class AFLDRecommendationScreenLow extends StatelessWidget {
                       SizedBox(
                         height: 250, // reduced height
                         child: Image.asset(
-                          'assets/page-1/images/greenCircle.png',
+                          'assets/page-1/images/blueCircle.png',
                           width: 460, // slightly smaller
                           fit: BoxFit.contain,
                         ),
                       ),
                       Text(
-                        "\n\nLOW \nRISK",
+                        "\n\n HEALTHY! ",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'RobotoCondensed',
                           fontSize: 36,
                           fontWeight: FontWeight.w900,
-                          color: Color(0xFF00C402),
+                          color: Color(0xFF3900FF),
                         ),
                       ),
                     ],
@@ -87,7 +87,7 @@ class AFLDRecommendationScreenLow extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
-                      "Implement these practices to minimize the risk of Alcoholic Fatty Liver Disease",
+                      "Keep it up!!",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: 'RobotoCondensed',
@@ -111,35 +111,30 @@ class AFLDRecommendationScreenLow extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
-                          "Your risk for Alcoholic Fatty Liver Disease is low. While this is reassuring, it's important to continue taking proactive steps to maintain your liver health and prevent any future complications. Here are some personalized recommendations:\n\n"
+                          "Your liver appears to be healthy. To maintain this good status and support your overall well-being, here are some general lifestyle recommendations:\n\n"
 
-                              "• Abstain from alcohol. Even minimal alcohol intake can lead to fat buildup in the liver over time. For individuals with any risk of liver disease, complete avoidance of alcohol is the safest choice. This prevents progression to more serious conditions like alcoholic hepatitis or cirrhosis.\n\n"
+                              "• Maintain a balanced and nutritious diet. A diet rich in whole foods helps the liver function optimally. Focus on:\n"
+                              "   → Fresh fruits and vegetables for antioxidants and fiber\n"
+                              "   → Whole grains like oats, brown rice, and quinoa\n"
+                              "   → Lean proteins such as fish, legumes, and skinless poultry\n"
+                              "   → Healthy fats from sources like olive oil, nuts, seeds, and avocados\n\n"
+                              "  Limit the intake of:\n"
+                              "   → Highly processed and fried foods\n"
+                              "   → Excessive sugar, sugary drinks, and refined carbs\n"
+                              "   → Saturated fats and red meats in large quantities\n\n"
 
-                              "• Maintain a healthy weight. Excess weight, especially around the abdomen, increases the risk of fat accumulation in the liver. Aim for a gradual and sustainable weight loss of 5–10% of your body weight over six months. This can significantly reduce liver fat, improve insulin sensitivity, and lower inflammation.\n\n"
+                              "• Avoid alcohol or consume it in moderation. If you do drink, stay within recommended limits (1 drink per day for women, 2 for men). Excess alcohol is one of the major contributors to liver damage over time.\n\n"
 
-                              "• Adopt a balanced, liver-friendly diet. A Mediterranean-style eating plan is ideal. Include plenty of:\n"
-                              "   → Fresh fruits and vegetables (for fiber, vitamins, and antioxidants)\n"
-                              "   → Whole grains (like brown rice, oats, and quinoa)\n"
-                              "   → Lean proteins (such as fish, skinless poultry, and legumes)\n"
-                              "   → Healthy fats (found in olive oil, nuts, and seeds)\n\n"
-                              "  Limit consumption of:\n"
-                              "   → Processed and fast foods\n"
-                              "   → Sugary beverages and sweets\n"
-                              "   → High-fat dairy and red meats\n\n"
-                              "  This dietary approach helps manage weight, reduce liver fat, and lower cholesterol levels.\n\n"
+                              "• Stay physically active. Aim for at least 150 minutes of moderate aerobic activity per week, such as brisk walking, dancing, swimming, or cycling. Add muscle-strengthening exercises twice a week to improve metabolic health.\n\n"
 
-                              "• Engage in regular physical activity. Incorporate at least 150 minutes of moderate-intensity aerobic exercise weekly—such as brisk walking, cycling, or swimming. In addition, strength training 2–3 times a week can help maintain muscle mass and improve metabolism.\n\n"
+                              "• Keep a healthy weight. Obesity and fat accumulation around the abdomen can increase your risk for non-alcoholic fatty liver disease. A stable, healthy weight helps reduce strain on the liver.\n\n"
 
-                              "• Ensure adequate sleep and manage stress. Try to get 7–8 hours of restful sleep each night. Chronic sleep deprivation and high stress levels are associated with metabolic issues and liver dysfunction. Establishing a regular sleep routine and practicing stress-reduction techniques (e.g., mindfulness or yoga) can support better liver health.\n\n"
+                              "• Stay hydrated. Drinking sufficient water throughout the day aids the liver’s detoxification process and supports overall organ function. Limit sugary or caffeinated drinks.\n\n"
 
-                              "• Stay hydrated. Drinking enough water throughout the day helps the liver process and eliminate toxins efficiently. Limit sugary and caffeinated drinks and prioritize water or herbal teas.\n\n"
+                              "• Avoid unnecessary medications and toxins. Only take medications that are prescribed or recommended by a healthcare professional. Be cautious with over-the-counter drugs, herbal supplements, or exposure to chemicals and solvents.\n\n"
 
-                              "• Schedule regular medical check-ups. Routine liver function tests and overall health assessments help detect any early signs of liver stress. Early intervention makes treatment and lifestyle changes more effective.\n\n"
-
-                              "• Educate yourself and stay informed. Understanding the risks, symptoms, and early warning signs of liver disease helps you take action early. Stay proactive and informed about your health.\n\n"
-
-                              "Maintaining a healthy lifestyle today can go a long way in preventing liver-related complications in the future."
-,
+                              "• Practice safe hygiene. Wash hands regularly, ensure food is cooked properly, and avoid sharing needles or personal hygiene items to prevent infections like hepatitis.\n\n"
+                          ,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 18,

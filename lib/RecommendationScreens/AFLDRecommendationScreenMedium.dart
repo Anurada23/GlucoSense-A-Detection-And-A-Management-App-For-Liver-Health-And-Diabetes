@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class AFLDRecommendationScreenLow extends StatelessWidget {
-  const AFLDRecommendationScreenLow({Key? key}) : super(key: key);
+class AFLDRecommendationScreenMedium extends StatelessWidget {
+  const AFLDRecommendationScreenMedium({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,19 +64,19 @@ class AFLDRecommendationScreenLow extends StatelessWidget {
                       SizedBox(
                         height: 250, // reduced height
                         child: Image.asset(
-                          'assets/page-1/images/greenCircle.png',
+                          'assets/page-1/images/orangeCircle.png',
                           width: 460, // slightly smaller
                           fit: BoxFit.contain,
                         ),
                       ),
                       Text(
-                        "\n\nLOW \nRISK",
+                        "\n\nMEDIUM \nRISK",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'RobotoCondensed',
                           fontSize: 36,
                           fontWeight: FontWeight.w900,
-                          color: Color(0xFF00C402),
+                          color: Color(0xFFFF9100),
                         ),
                       ),
                     ],
@@ -111,35 +111,30 @@ class AFLDRecommendationScreenLow extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
-                          "Your risk for Alcoholic Fatty Liver Disease is low. While this is reassuring, it's important to continue taking proactive steps to maintain your liver health and prevent any future complications. Here are some personalized recommendations:\n\n"
+                          "Your risk for Alcoholic Fatty Liver Disease is moderate. At this stage, there is a noticeable accumulation of fat in your liver, which can lead to further complications if not addressed promptly. However, with timely and consistent lifestyle modifications, the condition is often reversible. Please consider the following personalized recommendations:\n\n"
 
-                              "• Abstain from alcohol. Even minimal alcohol intake can lead to fat buildup in the liver over time. For individuals with any risk of liver disease, complete avoidance of alcohol is the safest choice. This prevents progression to more serious conditions like alcoholic hepatitis or cirrhosis.\n\n"
+                              "• Cease alcohol consumption immediately. Even occasional or moderate alcohol use can further damage your liver and accelerate disease progression. Complete and lifelong abstinence from all forms of alcohol is strongly advised to allow your liver the best chance to heal and recover.  \n\n"
 
-                              "• Maintain a healthy weight. Excess weight, especially around the abdomen, increases the risk of fat accumulation in the liver. Aim for a gradual and sustainable weight loss of 5–10% of your body weight over six months. This can significantly reduce liver fat, improve insulin sensitivity, and lower inflammation.\n\n"
+                              "• Implement a structured and sustainable weight loss plan. Aim to gradually reduce 5–10% of your current body weight over the next six months. This modest weight loss has been clinically shown to significantly reduce liver fat, inflammation, and associated metabolic stress on the body. Consider working with a healthcare professional or nutritionist for a guided plan.  \n\n"
 
-                              "• Adopt a balanced, liver-friendly diet. A Mediterranean-style eating plan is ideal. Include plenty of:\n"
-                              "   → Fresh fruits and vegetables (for fiber, vitamins, and antioxidants)\n"
-                              "   → Whole grains (like brown rice, oats, and quinoa)\n"
-                              "   → Lean proteins (such as fish, skinless poultry, and legumes)\n"
-                              "   → Healthy fats (found in olive oil, nuts, and seeds)\n\n"
-                              "  Limit consumption of:\n"
-                              "   → Processed and fast foods\n"
-                              "   → Sugary beverages and sweets\n"
-                              "   → High-fat dairy and red meats\n\n"
-                              "  This dietary approach helps manage weight, reduce liver fat, and lower cholesterol levels.\n\n"
+                              "• Adopt a liver-friendly and anti-inflammatory diet. A Mediterranean-style diet is highly recommended and should include:\n"
+                              "   → A wide variety of colorful fruits and vegetables packed with antioxidants and fiber\n"
+                              "   → Whole grains such as brown rice, oats, and quinoa that provide sustained energy\n"
+                              "   → Lean sources of protein like fish, legumes, poultry, and tofu to support tissue repair\n"
+                              "   → Healthy fats from nuts, seeds, olive oil, and avocados that support liver health\n"
+                              "  At the same time, limit or avoid the following:\n"
+                              "   → Processed and fried foods that are high in trans fats\n"
+                              "   → Sugary beverages like soda and packaged juices that increase fat buildup\n"
+                              "   → High-fat dairy products such as cream and full-fat cheese\n\n"
 
-                              "• Engage in regular physical activity. Incorporate at least 150 minutes of moderate-intensity aerobic exercise weekly—such as brisk walking, cycling, or swimming. In addition, strength training 2–3 times a week can help maintain muscle mass and improve metabolism.\n\n"
+                              "• Engage in regular and consistent physical activity. Strive to perform at least 150 minutes of moderate-intensity exercise each week, such as brisk walking, light jogging, cycling, or swimming. Physical activity not only helps with weight management but also improves insulin sensitivity and reduces liver fat over time.  \n\n"
 
-                              "• Ensure adequate sleep and manage stress. Try to get 7–8 hours of restful sleep each night. Chronic sleep deprivation and high stress levels are associated with metabolic issues and liver dysfunction. Establishing a regular sleep routine and practicing stress-reduction techniques (e.g., mindfulness or yoga) can support better liver health.\n\n"
+                              "• Monitor your liver health through routine medical checkups. Regular liver function tests (LFTs), ultrasound scans, or other evaluations will help track the state of your liver and ensure that early signs of worsening are caught and managed appropriately. Discuss a follow-up plan with your doctor.  \n\n"
 
-                              "• Stay hydrated. Drinking enough water throughout the day helps the liver process and eliminate toxins efficiently. Limit sugary and caffeinated drinks and prioritize water or herbal teas.\n\n"
+                              "• Address and manage coexisting medical conditions. Conditions like diabetes, hypertension, and high cholesterol can compound liver damage and accelerate progression. Proper medication, diet, and lifestyle measures to control these issues are essential for protecting your liver and overall health. Collaborate closely with your healthcare team to develop a comprehensive care strategy.  \n\n"
 
-                              "• Schedule regular medical check-ups. Routine liver function tests and overall health assessments help detect any early signs of liver stress. Early intervention makes treatment and lifestyle changes more effective.\n\n"
-
-                              "• Educate yourself and stay informed. Understanding the risks, symptoms, and early warning signs of liver disease helps you take action early. Stay proactive and informed about your health.\n\n"
-
-                              "Maintaining a healthy lifestyle today can go a long way in preventing liver-related complications in the future."
-,
+                              "By following these recommendations consistently, you can take control of your liver health and reduce the risk of progression to more advanced stages of liver disease. Early action truly makes a difference."
+                          ,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 18,

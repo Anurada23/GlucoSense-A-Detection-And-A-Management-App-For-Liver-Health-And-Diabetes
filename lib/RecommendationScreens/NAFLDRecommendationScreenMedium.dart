@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class AFLDRecommendationScreenLow extends StatelessWidget {
-  const AFLDRecommendationScreenLow({Key? key}) : super(key: key);
+class NAFLDRecommendationScreenMedium extends StatelessWidget {
+  const NAFLDRecommendationScreenMedium({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,19 +64,19 @@ class AFLDRecommendationScreenLow extends StatelessWidget {
                       SizedBox(
                         height: 250, // reduced height
                         child: Image.asset(
-                          'assets/page-1/images/greenCircle.png',
+                          'assets/page-1/images/orangeCircle.png',
                           width: 460, // slightly smaller
                           fit: BoxFit.contain,
                         ),
                       ),
                       Text(
-                        "\n\nLOW \nRISK",
+                        "\n\nMEDIUM \nRISK",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'RobotoCondensed',
                           fontSize: 36,
                           fontWeight: FontWeight.w900,
-                          color: Color(0xFF00C402),
+                          color: Color(0xFFFF9100),
                         ),
                       ),
                     ],
@@ -87,7 +87,7 @@ class AFLDRecommendationScreenLow extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
-                      "Implement these practices to minimize the risk of Alcoholic Fatty Liver Disease",
+                      "Implement these practices to minimize the risk of Non-Alcoholic Fatty Liver Disease",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: 'RobotoCondensed',
@@ -111,34 +111,31 @@ class AFLDRecommendationScreenLow extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
-                          "Your risk for Alcoholic Fatty Liver Disease is low. While this is reassuring, it's important to continue taking proactive steps to maintain your liver health and prevent any future complications. Here are some personalized recommendations:\n\n"
+                          "Your liver shows moderate fat accumulation, indicating a higher risk of progression to more severe liver conditions. Immediate lifestyle modifications are essential to halt or reverse disease progression:\n\n"
 
-                              "• Abstain from alcohol. Even minimal alcohol intake can lead to fat buildup in the liver over time. For individuals with any risk of liver disease, complete avoidance of alcohol is the safest choice. This prevents progression to more serious conditions like alcoholic hepatitis or cirrhosis.\n\n"
+                              "• Initiate a structured weight loss plan. Aim for a gradual reduction of 5–10% of your body weight over six months through a combination of diet and exercise.  \n\n"
 
-                              "• Maintain a healthy weight. Excess weight, especially around the abdomen, increases the risk of fat accumulation in the liver. Aim for a gradual and sustainable weight loss of 5–10% of your body weight over six months. This can significantly reduce liver fat, improve insulin sensitivity, and lower inflammation.\n\n"
+                              "• Embrace a liver-friendly diet. Follow a Mediterranean-style eating plan that includes:\n"
+                              "   → Plenty of fruits and vegetables\n"
+                              "   → Whole grains like quinoa and barley\n"
+                              "   → Lean proteins such as fish, legumes, and tofu\n"
+                              "   → Healthy fats from nuts, seeds, and olive oil\n"
+                              "  Limit intake of:\n"
+                              "   → Red and processed meats\n"
+                              "   → Sugary beverages and snacks\n"
+                              "   → High-fat dairy products  \n\n"
 
-                              "• Adopt a balanced, liver-friendly diet. A Mediterranean-style eating plan is ideal. Include plenty of:\n"
-                              "   → Fresh fruits and vegetables (for fiber, vitamins, and antioxidants)\n"
-                              "   → Whole grains (like brown rice, oats, and quinoa)\n"
-                              "   → Lean proteins (such as fish, skinless poultry, and legumes)\n"
-                              "   → Healthy fats (found in olive oil, nuts, and seeds)\n\n"
-                              "  Limit consumption of:\n"
-                              "   → Processed and fast foods\n"
-                              "   → Sugary beverages and sweets\n"
-                              "   → High-fat dairy and red meats\n\n"
-                              "  This dietary approach helps manage weight, reduce liver fat, and lower cholesterol levels.\n\n"
+                              "• Increase physical activity. Incorporate at least 150 minutes of moderate-intensity exercise per week, such as brisk walking, dancing, or cycling.  \n\n"
 
-                              "• Engage in regular physical activity. Incorporate at least 150 minutes of moderate-intensity aerobic exercise weekly—such as brisk walking, cycling, or swimming. In addition, strength training 2–3 times a week can help maintain muscle mass and improve metabolism.\n\n"
+                              "• Monitor liver health regularly. Schedule periodic evaluations, including blood tests and imaging, to assess liver function and detect any changes.  \n\n"
 
-                              "• Ensure adequate sleep and manage stress. Try to get 7–8 hours of restful sleep each night. Chronic sleep deprivation and high stress levels are associated with metabolic issues and liver dysfunction. Establishing a regular sleep routine and practicing stress-reduction techniques (e.g., mindfulness or yoga) can support better liver health.\n\n"
+                              "• Manage coexisting health conditions. Control diabetes, high blood pressure, and high cholesterol through medication and lifestyle changes, as they can contribute to liver disease progression.  \n\n"
 
-                              "• Stay hydrated. Drinking enough water throughout the day helps the liver process and eliminate toxins efficiently. Limit sugary and caffeinated drinks and prioritize water or herbal teas.\n\n"
+                              "• Limit alcohol consumption. Even moderate alcohol intake can worsen liver damage in NAFLD patients. It's advisable to minimize or abstain from alcohol.  \n\n"
 
-                              "• Schedule regular medical check-ups. Routine liver function tests and overall health assessments help detect any early signs of liver stress. Early intervention makes treatment and lifestyle changes more effective.\n\n"
+                              "• Consider consulting a registered dietitian. A professional can provide personalized dietary guidance to support liver health.  \n\n"
 
-                              "• Educate yourself and stay informed. Understanding the risks, symptoms, and early warning signs of liver disease helps you take action early. Stay proactive and informed about your health.\n\n"
-
-                              "Maintaining a healthy lifestyle today can go a long way in preventing liver-related complications in the future."
+                              "Taking these steps can significantly reduce liver fat and inflammation, improving overall liver function."
 ,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,

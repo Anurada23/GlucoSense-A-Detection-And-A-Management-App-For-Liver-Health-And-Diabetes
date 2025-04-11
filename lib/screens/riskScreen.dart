@@ -2,7 +2,26 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import '../RecommendationScreens/AFLDRecommendationScreenHigh.dart';
 import '../RecommendationScreens/AFLDRecommendationScreenLow.dart';
+import '../RecommendationScreens/AFLDRecommendationScreenMedium.dart';
+import '../RecommendationScreens/AFLDRecommendationScreenhealthy.dart';
+import '../RecommendationScreens/CholestaticRecommendationScreenHealthy.dart';
+import '../RecommendationScreens/CholestaticRecommendationScreenHigh.dart';
+import '../RecommendationScreens/CholestaticRecommendationScreenLow.dart';
+import '../RecommendationScreens/CholestaticRecommendationScreenMedium.dart';
+import '../RecommendationScreens/CirrhosisRecommendationScreenHealthy.dart';
+import '../RecommendationScreens/CirrhosisRecommendationScreenHigh.dart';
+import '../RecommendationScreens/CirrhosisRecommendationScreenLow.dart';
+import '../RecommendationScreens/CirrhosisRecommendationScreenMedium.dart';
+import '../RecommendationScreens/HepatitisRecommendationScreenHealthy.dart';
+import '../RecommendationScreens/HepatitisRecommendationScreenHigh.dart';
+import '../RecommendationScreens/HepatitisRecommendationScreenLow.dart';
+import '../RecommendationScreens/HepatitisRecommendationScreenMedium.dart';
+import '../RecommendationScreens/NAFLDRecommendationScreenHealthy.dart';
+import '../RecommendationScreens/NAFLDRecommendationScreenHigh.dart';
+import '../RecommendationScreens/NAFLDRecommendationScreenLow.dart';
+import '../RecommendationScreens/NAFLDRecommendationScreenMedium.dart';
 
 class ResultsScreen2 extends StatelessWidget {
   final Map<String, String> results;
@@ -30,45 +49,57 @@ class ResultsScreen2 extends StatelessWidget {
   // based on the disease name and risk level.
   void _navigateToRecommendation(BuildContext context, String disease, String risk) {
     // For each disease, push to the corresponding recommendation screen.
-    if(disease == 'Alcoholic Liver Disease') {
-      if (risk == 'low') {
+    if(disease == 'Alcoholic Fatty Liver Disease (AFLD)') {
+      if (risk == 'healthy') {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => AFLDRecommendationScreenhealthy()));
+      } else if (risk == 'low') {
         Navigator.push(context, MaterialPageRoute(builder: (_) => AFLDRecommendationScreenLow()));
       } else if (risk == 'medium') {
-        //Navigator.push(context, MaterialPageRoute(builder: (_) => AFLDRecommendationScreenMedium()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => AFLDRecommendationScreenMedium()));
       } else if (risk == 'high') {
-       // Navigator.push(context, MaterialPageRoute(builder: (_) => AFLDRecommendationScreenHigh()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => AFLDRecommendationScreenHigh()));
       }
     } else if(disease == 'Non-Alcoholic Fatty Liver Disease (NAFLD)') {
-      if (risk == 'low') {
-        //Navigator.push(context, MaterialPageRoute(builder: (_) => NAFLDRecommendationScreenLow()));
+      if (risk == 'healthy') {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => NAFLDRecommendationScreenHealthy()));
+      } else if (risk == 'low') {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => NAFLDRecommendationScreenLow()));
       } else if (risk == 'medium') {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => AFLDRecommendationScreenLow()));
+        //********************************************TESTER ****************************************************
+        //NAFLDRecommendationScreenMedium
+        Navigator.push(context, MaterialPageRoute(builder: (_) => NAFLDRecommendationScreenMedium()));
       } else if (risk == 'high') {
-        //Navigator.push(context, MaterialPageRoute(builder: (_) => NAFLDRecommendationScreenHigh()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => NAFLDRecommendationScreenHigh()));
       }
     } else if(disease == 'Cirrhosis') {
-      if (risk == 'low') {
-        //Navigator.push(context, MaterialPageRoute(builder: (_) => CirrhosisRecommendationScreenLow()));
+      if (risk == 'healthy') {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => CirrhosisRecommendationScreenHealthy()));
+      } else if (risk == 'low') {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => CirrhosisRecommendationScreenLow()));
       } else if (risk == 'medium') {
-        //Navigator.push(context, MaterialPageRoute(builder: (_) => CirrhosisRecommendationScreenMedium()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => CirrhosisRecommendationScreenMedium()));
       } else if (risk == 'high') {
-       // Navigator.push(context, MaterialPageRoute(builder: (_) => CirrhosisRecommendationScreenHigh()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => CirrhosisRecommendationScreenHigh()));
       }
     } else if(disease == 'Cholestatic Liver Disease') {
-      if (risk == 'low') {
-        //Navigator.push(context, MaterialPageRoute(builder: (_) => CholestaticRecommendationScreenLow()));
+      if (risk == 'healthy') {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => CholestaticRecommendationScreenHealthy()));
+      } else if (risk == 'low') {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => CholestaticRecommendationScreenLow()));
       } else if (risk == 'medium') {
-        //Navigator.push(context, MaterialPageRoute(builder: (_) => CholestaticRecommendationScreenMedium()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => CholestaticRecommendationScreenMedium()));
       } else if (risk == 'high') {
-        //Navigator.push(context, MaterialPageRoute(builder: (_) => CholestaticRecommendationScreenHigh()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => CholestaticRecommendationScreenHigh()));
       }
     } else if(disease == 'Hepatitis') {
-      if (risk == 'low') {
-       // Navigator.push(context, MaterialPageRoute(builder: (_) => HepatitisRecommendationScreenLow()));
+      if (risk == 'healthy') {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => HepatitisRecommendationScreenHealthy()));
+      } else if (risk == 'low') {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => HepatitisRecommendationScreenLow()));
       } else if (risk == 'medium') {
-        //Navigator.push(context, MaterialPageRoute(builder: (_) => HepatitisRecommendationScreenMedium()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => HepatitisRecommendationScreenMedium()));
       } else if (risk == 'high') {
-        //Navigator.push(context, MaterialPageRoute(builder: (_) => HepatitisRecommendationScreenHigh()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => HepatitisRecommendationScreenHigh()));
       }
     }
   }
@@ -268,4 +299,9 @@ class ResultsScreen2 extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
 

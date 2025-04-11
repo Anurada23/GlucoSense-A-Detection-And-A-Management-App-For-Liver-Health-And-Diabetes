@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class AFLDRecommendationScreenLow extends StatelessWidget {
-  const AFLDRecommendationScreenLow({Key? key}) : super(key: key);
+class AFLDRecommendationScreenHigh extends StatelessWidget {
+  const AFLDRecommendationScreenHigh({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,19 +64,19 @@ class AFLDRecommendationScreenLow extends StatelessWidget {
                       SizedBox(
                         height: 250, // reduced height
                         child: Image.asset(
-                          'assets/page-1/images/greenCircle.png',
+                          'assets/page-1/images/redCircle.png',
                           width: 460, // slightly smaller
                           fit: BoxFit.contain,
                         ),
                       ),
                       Text(
-                        "\n\nLOW \nRISK",
+                        "\n\nHIGH \nRISK",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'RobotoCondensed',
                           fontSize: 36,
                           fontWeight: FontWeight.w900,
-                          color: Color(0xFF00C402),
+                          color: Color(0xFFFF0000),
                         ),
                       ),
                     ],
@@ -87,7 +87,7 @@ class AFLDRecommendationScreenLow extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
-                      "Implement these practices to minimize the risk of Alcoholic Fatty Liver Disease",
+                      "Consult a hepatologist/Doctor promptly to manage and mitigate the progression of Alcoholic Fatty Liver Disease.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: 'RobotoCondensed',
@@ -111,35 +111,23 @@ class AFLDRecommendationScreenLow extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
-                          "Your risk for Alcoholic Fatty Liver Disease is low. While this is reassuring, it's important to continue taking proactive steps to maintain your liver health and prevent any future complications. Here are some personalized recommendations:\n\n"
+                          "Your risk for Alcoholic Fatty Liver Disease is high. This indicates significant liver damage, which could progress to cirrhosis or liver failure without immediate action. Intensive lifestyle changes and medical intervention are critical at this stage. Here are some essential recommendations to manage your condition:\n\n"
 
-                              "• Abstain from alcohol. Even minimal alcohol intake can lead to fat buildup in the liver over time. For individuals with any risk of liver disease, complete avoidance of alcohol is the safest choice. This prevents progression to more serious conditions like alcoholic hepatitis or cirrhosis.\n\n"
+                              "• Immediately and completely abstain from alcohol. At this stage, even trace amounts of alcohol can cause serious and irreversible harm to your liver. Ceasing all alcohol consumption is absolutely non-negotiable and must be maintained long-term. This is the most important step you can take to slow down or stop disease progression.  \n\n"
 
-                              "• Maintain a healthy weight. Excess weight, especially around the abdomen, increases the risk of fat accumulation in the liver. Aim for a gradual and sustainable weight loss of 5–10% of your body weight over six months. This can significantly reduce liver fat, improve insulin sensitivity, and lower inflammation.\n\n"
+                              "• Seek both medical and psychological support as part of your recovery. Consult with your healthcare provider for a comprehensive treatment plan tailored to your liver condition. Additionally, if you struggle with alcohol dependency, join a support group or attend counseling to receive structured emotional and behavioral support.  \n\n"
 
-                              "• Adopt a balanced, liver-friendly diet. A Mediterranean-style eating plan is ideal. Include plenty of:\n"
-                              "   → Fresh fruits and vegetables (for fiber, vitamins, and antioxidants)\n"
-                              "   → Whole grains (like brown rice, oats, and quinoa)\n"
-                              "   → Lean proteins (such as fish, skinless poultry, and legumes)\n"
-                              "   → Healthy fats (found in olive oil, nuts, and seeds)\n\n"
-                              "  Limit consumption of:\n"
-                              "   → Processed and fast foods\n"
-                              "   → Sugary beverages and sweets\n"
-                              "   → High-fat dairy and red meats\n\n"
-                              "  This dietary approach helps manage weight, reduce liver fat, and lower cholesterol levels.\n\n"
+                              "• Undergo a thorough and ongoing medical evaluation. Your doctor may recommend regular liver function tests, imaging (like ultrasound or FibroScan), and possibly a liver biopsy. These tests help assess the current extent of liver damage and guide treatment decisions moving forward. Regular monitoring is essential to detect complications early.  \n\n"
 
-                              "• Engage in regular physical activity. Incorporate at least 150 minutes of moderate-intensity aerobic exercise weekly—such as brisk walking, cycling, or swimming. In addition, strength training 2–3 times a week can help maintain muscle mass and improve metabolism.\n\n"
+                              "• Follow a supervised, nutrient-rich diet plan. It is crucial to work closely with a registered dietitian who specializes in liver health to create a diet tailored to your medical needs. Your diet should be high in vitamins, fiber, and healthy fats, while being low in processed sugars and saturated fats. A specialized plan can also help address nutritional deficiencies that often accompany liver damage.  \n\n"
 
-                              "• Ensure adequate sleep and manage stress. Try to get 7–8 hours of restful sleep each night. Chronic sleep deprivation and high stress levels are associated with metabolic issues and liver dysfunction. Establishing a regular sleep routine and practicing stress-reduction techniques (e.g., mindfulness or yoga) can support better liver health.\n\n"
+                              "• Engage in safe and appropriate physical activity. Depending on your current health status, your doctor may recommend low-impact exercises like walking, yoga, or water aerobics. Regular movement can help improve metabolism, reduce fat accumulation, and support overall well-being — but it must be done within safe physical limits.  \n\n"
 
-                              "• Stay hydrated. Drinking enough water throughout the day helps the liver process and eliminate toxins efficiently. Limit sugary and caffeinated drinks and prioritize water or herbal teas.\n\n"
+                              "• Discuss potential pharmacological therapies with your doctor. In some cases, medications may be prescribed to manage associated conditions like diabetes, high cholesterol, or to address inflammation in the liver. Do not self-medicate — all treatments should be carefully managed by a healthcare professional.  \n\n"
 
-                              "• Schedule regular medical check-ups. Routine liver function tests and overall health assessments help detect any early signs of liver stress. Early intervention makes treatment and lifestyle changes more effective.\n\n"
+                              "• Be evaluated for potential liver transplantation. If your liver damage is advanced or unresponsive to treatment, your doctor may refer you to a transplant specialist for further evaluation. Early referral is important to ensure that all options remain available in the event of liver failure.  \n\n"
 
-                              "• Educate yourself and stay informed. Understanding the risks, symptoms, and early warning signs of liver disease helps you take action early. Stay proactive and informed about your health.\n\n"
-
-                              "Maintaining a healthy lifestyle today can go a long way in preventing liver-related complications in the future."
-,
+                              "Please take these recommendations seriously and act promptly. With professional guidance and dedicated lifestyle changes, further deterioration can be prevented, and in some cases, liver function can even partially recover.",
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 18,
