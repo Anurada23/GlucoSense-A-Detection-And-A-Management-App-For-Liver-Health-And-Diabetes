@@ -586,12 +586,9 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
                         ),
                       );
 
-                      // Display results to the user
-                      // For example, navigate to a results page or show a dialog
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => ResultsPage(results: biomarkerValues)));
+
                     } else {
-                      // Handle form validation errors
-                      // For example, show a snackbar or dialog indicating the user to correct the errors
+
                       // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please correct the errors in the form')));
                     }
                   },
@@ -666,7 +663,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
 
     // Define diseases and their associated biomarkers
     final diseases = {
-      'Alcoholic Liver Disease': [
+      'Alcoholic Fatty Liver Disease (AFLD)': [
         'AST_SGOT',
         'ALT_SGPT',
         'Gamma_GT',
@@ -719,7 +716,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
       print('\n$disease biomarker status:');
 
       switch (disease) {
-        case 'Alcoholic Liver Disease': {
+        case 'Alcoholic Fatty Liver Disease (AFLD)': {
           // High Priority Biomarkers:
           if (biomarkerValues.containsKey('AST_SGOT') &&
               biomarkerValues.containsKey('ALT_SGPT')) {
@@ -727,7 +724,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
             double alt = biomarkerValues['ALT_SGPT']!;
             double ratio = ast / alt;
             if (ratio > 1.5) {
-              print('AST/ALT Ratio (De Ritis): High (Value: $ratio)');
+              print('AST/ALT Ratio (De Ritis): Abnormally Deviated (Value: $ratio)');
               riskScore += 1;
             } else {
               print('AST/ALT Ratio (De Ritis): Normal (Value: $ratio)');
@@ -737,7 +734,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('ALT_SGPT')) {
             double alt = biomarkerValues['ALT_SGPT']!;
             if (alt > normalRanges['ALT_SGPT']![1]) {
-              print('ALT_SGPT: High (Value: $alt)');
+              print('ALT_SGPT: Abnormally Deviated (Value: $alt)');
               riskScore += 1;
             } else {
               print('ALT_SGPT: Normal (Value: $alt)');
@@ -756,7 +753,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
             double bilirubin = biomarkerValues['Bilirubin']!;
             // High if Bilirubin > 5 times upper normal (here, > 5 * 1.2 = 6.0 mg/dL)
             if (bilirubin > 5 * normalRanges['Bilirubin']![1]) {
-              print('Bilirubin: High (Value: $bilirubin)');
+              print('Bilirubin: Abnormally Deviated (Value: $bilirubin)');
               riskScore += 1;
             } else {
               print('Bilirubin: Normal (Value: $bilirubin)');
@@ -766,7 +763,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('Alkaline_Phosphatase')) {
             double alp = biomarkerValues['Alkaline_Phosphatase']!;
             if (alp > normalRanges['Alkaline_Phosphatase']![1]) {
-              print('Alkaline Phosphatase: Medium abnormal (Value: $alp)');
+              print('Alkaline Phosphatase: Medium abnormality (Value: $alp)');
               riskScore += 1;
             } else {
               print('Alkaline Phosphatase: Normal (Value: $alp)');
@@ -775,7 +772,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('Albumin')) {
             double albumin = biomarkerValues['Albumin']!;
             if (albumin < normalRanges['Albumin']![0]) {
-              print('Albumin: Medium abnormal (Value: $albumin)');
+              print('Albumin: Medium abnormality (Value: $albumin)');
               riskScore += 1;
             } else {
               print('Albumin: Normal (Value: $albumin)');
@@ -799,7 +796,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('ALT_SGPT')) {
             double alt = biomarkerValues['ALT_SGPT']!;
             if (alt > normalRanges['ALT_SGPT']![1]) {
-              print('ALT_SGPT: High (Value: $alt)');
+              print('ALT_SGPT: Abnormally Deviated (Value: $alt)');
               riskScore += 1;
             } else {
               print('ALT_SGPT: Normal (Value: $alt)');
@@ -808,7 +805,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('AST_SGOT')) {
             double ast = biomarkerValues['AST_SGOT']!;
             if (ast > normalRanges['AST_SGOT']![1]) {
-              print('AST_SGOT: High (Value: $ast)');
+              print('AST_SGOT: Abnormally Deviated (Value: $ast)');
               riskScore += 1;
             } else {
               print('AST_SGOT: Normal (Value: $ast)');
@@ -827,7 +824,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('Gamma_GT')) {
             double ggt = biomarkerValues['Gamma_GT']!;
             if (ggt > normalRanges['Gamma_GT']![1]) {
-              print('Gamma_GT: Medium abnormal (Value: $ggt)');
+              print('Gamma_GT: Medium abnormality (Value: $ggt)');
               riskScore += 1;
             } else {
               print('Gamma_GT: Normal (Value: $ggt)');
@@ -837,7 +834,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('Bilirubin')) {
             double bilirubin = biomarkerValues['Bilirubin']!;
             if (bilirubin < normalRanges['Bilirubin']![0]) {
-              print('Bilirubin: Low abnormal (Value: $bilirubin)');
+              print('Bilirubin: Low abnormality (Value: $bilirubin)');
               riskScore += 1;
             } else {
               print('Bilirubin: Normal (Value: $bilirubin)');
@@ -846,7 +843,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('Albumin')) {
             double albumin = biomarkerValues['Albumin']!;
             if (albumin < normalRanges['Albumin']![0]) {
-              print('Albumin: Low abnormal (Value: $albumin)');
+              print('Albumin: Low abnormality (Value: $albumin)');
               riskScore += 1;
             } else {
               print('Albumin: Normal (Value: $albumin)');
@@ -859,7 +856,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('Bilirubin')) {
             double bilirubin = biomarkerValues['Bilirubin']!;
             if (bilirubin > normalRanges['Bilirubin']![1]) {
-              print('Bilirubin: High (Value: $bilirubin)');
+              print('Bilirubin: Abnormally Deviated (Value: $bilirubin)');
               riskScore += 1;
             } else {
               print('Bilirubin: Normal (Value: $bilirubin)');
@@ -880,7 +877,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
             double alt = biomarkerValues['ALT_SGPT']!;
             double ratio = ast / alt;
             if (ratio > 1) {
-              print('AST/ALT Ratio: High (Value: $ratio)');
+              print('AST/ALT Ratio: Abnormally Deviated (Value: $ratio)');
               riskScore += 1;
             } else {
               print('AST/ALT Ratio: Normal (Value: $ratio)');
@@ -921,7 +918,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('Bilirubin')) {
             double bilirubin = biomarkerValues['Bilirubin']!;
             if (bilirubin > normalRanges['Bilirubin']![1]) {
-              print('Bilirubin: High (Value: $bilirubin)');
+              print('Bilirubin: Abnormally Deviated (Value: $bilirubin)');
               riskScore += 1;
             } else {
               print('Bilirubin: Normal (Value: $bilirubin)');
@@ -940,7 +937,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('AST_SGOT')) {
             double ast = biomarkerValues['AST_SGOT']!;
             if (ast > normalRanges['AST_SGOT']![1] && ast <= normalRanges['AST_SGOT']![1] * 1.5) {
-              print('AST_SGOT: Medium abnormal (Value: $ast)');
+              print('AST_SGOT: Medium abnormality (Value: $ast)');
               riskScore += 1;
             } else {
               print('AST_SGOT: Normal (Value: $ast)');
@@ -950,7 +947,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('Albumin')) {
             double albumin = biomarkerValues['Albumin']!;
             if (albumin < normalRanges['Albumin']![0]) {
-              print('Albumin: Low abnormal (Value: $albumin)');
+              print('Albumin: Low abnormality (Value: $albumin)');
               riskScore += 1;
             } else {
               print('Albumin: Normal (Value: $albumin)');
@@ -973,7 +970,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('ALT_SGPT')) {
             double alt = biomarkerValues['ALT_SGPT']!;
             if (alt > normalRanges['ALT_SGPT']![1]) {
-              print('ALT_SGPT: High (Value: $alt)');
+              print('ALT_SGPT: Abnormally Deviated (Value: $alt)');
               riskScore += 1;
             } else {
               print('ALT_SGPT: Normal (Value: $alt)');
@@ -982,7 +979,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('AST_SGOT')) {
             double ast = biomarkerValues['AST_SGOT']!;
             if (ast > normalRanges['AST_SGOT']![1]) {
-              print('AST_SGOT: High (Value: $ast)');
+              print('AST_SGOT: Abnormally Deviated (Value: $ast)');
               riskScore += 1;
             } else {
               print('AST_SGOT: Normal (Value: $ast)');
@@ -992,7 +989,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('Bilirubin')) {
             double bilirubin = biomarkerValues['Bilirubin']!;
             if (bilirubin > normalRanges['Bilirubin']![1]) {
-              print('Bilirubin: Medium abnormal (Value: $bilirubin)');
+              print('Bilirubin: Medium abnormality (Value: $bilirubin)');
               riskScore += 1;
             } else {
               print('Bilirubin: Normal (Value: $bilirubin)');
@@ -1002,7 +999,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
           if (biomarkerValues.containsKey('Albumin')) {
             double albumin = biomarkerValues['Albumin']!;
             if (albumin < normalRanges['Albumin']![0]) {
-              print('Albumin: Low abnormal (Value: $albumin)');
+              print('Albumin: Low abnormality (Value: $albumin)');
               riskScore += 1;
             } else {
               print('Albumin: Normal (Value: $albumin)');
@@ -1012,7 +1009,7 @@ class _MyAppSGPTSState extends State<MyAppSGPT> {
             double agRatio = biomarkerValues['A_G_Ratio']!;
             if (agRatio < normalRanges['A_G_Ratio']![0] ||
                 agRatio > normalRanges['A_G_Ratio']![1]) {
-              print('A/G Ratio: Low abnormal (Value: $agRatio)');
+              print('A/G Ratio: Low abnormality (Value: $agRatio)');
               riskScore += 1;
             } else {
               print('A/G Ratio: Normal (Value: $agRatio)');
