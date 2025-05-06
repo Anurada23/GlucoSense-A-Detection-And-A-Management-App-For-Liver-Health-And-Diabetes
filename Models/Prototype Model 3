@@ -295,12 +295,9 @@ def augmix(image, severity=2, width=3, depth=-1, alpha=1.0):
 # Custom Data Generator
 # ----------------------------------------
 class CustomDataGenerator(tf.keras.utils.Sequence):
-    def __init__(self, generator, alpha=1.0, cutmix_prob=1.0, mosaic_prob=1.0, augmix_prob=1.0):
+    def __init__(self, generator, alpha=0.4):
         self.generator = generator
         self.alpha = alpha
-        self.cutmix_prob = cutmix_prob
-        self.mosaic_prob = mosaic_prob
-        self.augmix_prob = augmix_prob
 
     def __len__(self):
         return len(self.generator)
@@ -308,17 +305,14 @@ class CustomDataGenerator(tf.keras.utils.Sequence):
     def __getitem__(self, idx):
         images, labels = self.generator[idx]
 
-        # Apply CutMix (if applicable)
-        if np.random.rand() < self.cutmix_prob:
-            images, labels = cutmix(images, labels, alpha=self.alpha)
+        # Apply CutMix
+        images, labels = cutmix(images, labels, alpha=self.alpha)
 
-        # Apply Mosaic (if applicable)
-        if np.random.rand() < self.mosaic_prob:
-            images, labels = mosaic(images, labels)
+        # Apply Mosaic
+        images, labels = mosaic(images, labels)
 
-        # Apply AugMix (if applicable)
-        if np.random.rand() < self.augmix_prob:
-            images = np.array([augmix(image) for image in images])
+        # Apply AugMix
+        images = np.array([augmix(image) for image in images])
 
         return images, labels
 
