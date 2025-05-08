@@ -1,0 +1,85 @@
+import cv2
+import json
+import numpy as np
+import os
+
+# Global variable for storing points
+points = []
+
+# Mouse callback function to get polygon points
+def draw_polygon(event, x, y, flags, param):
+    global points
+
+    # Left mouse button click
+    if event == cv2.EVENT_LBUTTONDOWN:
+        points.append((x, y))
+
+    # Right mouse button to finish polygon (and save annotation)
+    elif event == cv2.EVENT_RBUTTONDOWN:
+        if len(points) > 2:
+            # Draw polygon
+            img_copy = img.copy()
+            pts = np.array(points, np.int32)
+            pts = pts.reshape((-1, 1, 2))
+            cv2.polylines(img_copy, [pts], isClosed=True, color=(0, 255, 0), thickness=2)
+            cv2.imshow("Labeling", img_copy)
+            # Save annotation to json
+            save_annotation(image_path, points)
+            print(f"Annotation saved for {image_path}")
+            points = []  # Reset points for next annotation
+        else:
+            print("Please draw a polygon with at least 3 points.")
+
+# Function to save the annotation in a JSON format
+def save_annotation(image_path, points):
+    annotation = {
+        'image': image_path,
+        'shapes': [{
+            'label': 'lesion',  # Change to your label
+            'points': points,
+            'shape_type': 'polygon',
+        }]
+    }
+
+    # Save the annotation in a JSON file
+    json_filename = os.path.join(output_dir, os.path.basename(image_path).split('.')[0] + '_annotation.json')
+    with open(json_filename, 'w') as json_file:
+        json.dump(annotation, json_file)
+
+# Main script for labeling images
+image_folder = r"C:\Users\ACER\Downloads\Acanthosis Nigricans"  # Image folder path
+output_dir = r"C:\Users\ACER\Downloads\Annotations"  # Output folder for annotations
+os.makedirs(output_dir, exist_ok=True)
+
+# List all images in the folder (assumes images are .jpg or .png)
+image_paths = [os.path.join(image_folder, f) for f in os.listdir(image_folder) if f.endswith(('.jpg', '.png'))]
+
+# Iterate over each image in the folder
+for image_path in image_paths:
+    # Load the image
+    img = cv2.imread(image_path)
+    img_copy = img.copy()
+
+    # Create a window
+    cv2.namedWindow("Labeling")
+    cv2.setMouseCallback("Labeling", draw_polygon)
+
+    while True:
+        # Display the image
+        cv2.imshow("Labeling", img_copy)
+
+        # Press 'q' to quit the labeling process
+        key = cv2.waitKey(1) & 0xFF
+        if key == ord('q'):
+            break
+        elif key == 27:  # ESC key to finish the labeling and save the annotation
+            if len(points) > 2:
+                save_annotation(image_path, points)
+                print(f"Annotation saved for {image_path}")
+            break
+
+    # Reset the image for next labeling
+    img_copy = img.copy()
+
+# Cleanup and close the window
+cv2.destroyAllWindows()
