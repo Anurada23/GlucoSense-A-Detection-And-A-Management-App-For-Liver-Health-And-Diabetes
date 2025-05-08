@@ -98,7 +98,7 @@ plt.show()
 # Create data generators
 batch_size = 56
 image_size = (224, 224)
-#image_size = (300, 300)
+
 
 train_datagen = ImageDataGenerator(
     rescale=1./255,
@@ -161,7 +161,7 @@ num_classes = len(classes)
 
 # Build the EfficientNetB0 model
 base_model = EfficientNetB0(include_top=False, input_shape=(224, 224, 3), weights='imagenet')
-#base_model = EfficientNetB3(include_top=False, input_shape=(300, 300, 3), weights='imagenet')
+
 
 #base_model.trainable = False  # Freeze the base model
 
