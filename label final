@@ -35,7 +35,7 @@ def save_annotation(image_path, points):
     annotation = {
         'image': image_path,
         'shapes': [{
-            'label': 'lesion',  # Change to your label
+            'label': 'Acanthosis Nigricans',  # Change to your label
             'points': points,
             'shape_type': 'polygon',
         }]
