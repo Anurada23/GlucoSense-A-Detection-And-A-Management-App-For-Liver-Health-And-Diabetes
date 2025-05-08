@@ -339,7 +339,7 @@ history = model.fit(
     train_generator,
     validation_data=validation_generator,
     epochs=14,  # Set the number of epochs as needed
-    batch_size=47,
+    batch_size=56,
     callbacks=[early_stopping, checkpoint,reduce_lr]
 )
 
